@@ -5,6 +5,9 @@ import java.io.*;
 import com.example.morpion2.*;
 import javafx.application.Application;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -21,6 +24,8 @@ public class settings extends Application {
     @FXML private TextField DL;
     @FXML private TextField DLr;
     @FXML private TextField DH;
+
+    @FXML private Button buttonValider;
 
     @FXML
     public void initialize() throws InterruptedException, IOException{
@@ -101,6 +106,9 @@ public class settings extends Application {
         w.println("D:"+newDL+":"+newDLr+":"+newDH);
 
         w.close();
+
+        Stage stage = (Stage) buttonValider.getScene().getWindow();
+        stage.close();
     }
 
     @Override
