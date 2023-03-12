@@ -10,15 +10,15 @@
             <children>
             <Pane layoutX="195.0" layoutY="114.0" prefHeight="314.0" prefWidth="394.0">
                <children>
-                   <TextField fx:id="fHiddenLayersSize" layoutX="66.0" layoutY="67.0" prefHeight="25.0" prefWidth="75.0" />
-                   <TextField fx:id="fNumberOfHiddenLayers" layoutX="297.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
-                   <TextField fx:id="fLearningRate" layoutX="182.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
-                   <TextField fx:id="mHiddenLayersSize" layoutX="66.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
-                   <TextField fx:id="mNumberOfHiddenLayers" layoutX="297.0" layoutY="67.0" prefHeight="24.0" prefWidth="75.0" />
-                   <TextField fx:id="mLearningRate" layoutX="182.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
-                   <TextField fx:id="dHiddenLayersSize" layoutX="66.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
-                   <TextField fx:id="dNumberOfHiddenLayers" layoutX="297.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
-                   <TextField fx:id="dLearningRate" layoutX="186.0" layoutY="67.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="FL" layoutX="66.0" layoutY="67.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="FH" layoutX="297.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="FLr" layoutX="182.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="ML" layoutX="66.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="MH" layoutX="297.0" layoutY="67.0" prefHeight="24.0" prefWidth="75.0" />
+                   <TextField fx:id="MLr" layoutX="182.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="DL" layoutX="66.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="DH" layoutX="297.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="DLr" layoutX="186.0" layoutY="67.0" prefHeight="25.0" prefWidth="75.0" />
                    <Label layoutX="23.0" layoutY="67.0" prefHeight="25.0" prefWidth="31.0" text="F" />
                       <Label layoutX="23.0" layoutY="126.0" prefHeight="14.0" prefWidth="31.0" text="M" />
                       <Label layoutX="23.0" layoutY="181.0" prefHeight="14.0" prefWidth="31.0" text="D" />

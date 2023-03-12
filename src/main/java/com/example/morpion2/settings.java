@@ -10,108 +10,97 @@ import javafx.stage.Stage;
 
 public class settings extends Application {
 
-    @FXML private TextField fHiddenLayersSize;
-    @FXML private TextField fLearningRate;
-    @FXML private TextField fNumberOfHiddenLayers;
+    @FXML private TextField FL;
+    @FXML private TextField FLr;
+    @FXML private TextField FH;
 
-    @FXML private TextField mHiddenLayersSize;
-    @FXML private TextField mLearningRate;
-    @FXML private TextField mNumberOfHiddenLayers;
+    @FXML private TextField ML;
+    @FXML private TextField MLr;
+    @FXML private TextField MH;
 
-    @FXML private TextField dHiddenLayersSize;
-    @FXML private TextField dLearningRate;
-    @FXML private TextField dNumberOfHiddenLayers;
+    @FXML private TextField DL;
+    @FXML private TextField DLr;
+    @FXML private TextField DH;
 
     @FXML
     public void initialize() throws InterruptedException, IOException{
         ConfigFileLoader configFileLoader = new ConfigFileLoader();
-        /* à l'appel de cette fonction
-         * le fichier config va être lu
-         * chaque ligne va être un objet Config
-         * La HashMap des config va être créé
-         */
         configFileLoader.loadConfigFile("src/main/resources/config.txt");
-        /*
-         * Affectation des paramètre du niveau facile à la config facile
-         * même chose pour le niveau difficile et moyen
-         */
-        Config facile;
-        facile = configFileLoader.get("F");
-        Config moyen;
-        moyen = configFileLoader.get("M");
-        Config difficile;
-        difficile = configFileLoader.get("D");
 
-        /*
-         * Affectation des valeur des niveaux aux differents textField
-         */
-        //System.out.print(String.valueOf(facile.hiddenLayerSize));
+        Config F;
+        F = configFileLoader.get("F");
 
-        if(facile!=null) {
-            fHiddenLayersSize.setText(String.valueOf(facile.hiddenLayerSize));
-            fLearningRate.setText(String.valueOf(facile.learningRate));
-            fNumberOfHiddenLayers.setText(String.valueOf(facile.numberOfhiddenLayers));
+        Config M;
+        M = configFileLoader.get("M");
+
+        Config D;
+        D = configFileLoader.get("D");
+
+
+        if(F!=null) {
+            FL.setText(String.valueOf(F.hiddenLayerSize));
+            FLr.setText(String.valueOf(F.learningRate));
+            FH.setText(String.valueOf(F.numberOfhiddenLayers));
         }
-        if(moyen!=null) {
-            mHiddenLayersSize.setText(String.valueOf(moyen.hiddenLayerSize));
-            mLearningRate.setText(String.valueOf(moyen.learningRate));
-            mNumberOfHiddenLayers.setText(String.valueOf(moyen.numberOfhiddenLayers));
+        if(M!=null) {
+            ML.setText(String.valueOf(M.hiddenLayerSize));
+            MLr.setText(String.valueOf(M.learningRate));
+            MH.setText(String.valueOf(M.numberOfhiddenLayers));
         }
-        if(difficile!=null) {
-            dHiddenLayersSize.setText(String.valueOf(difficile.hiddenLayerSize));
-            dLearningRate.setText(String.valueOf(difficile.learningRate));
-            dNumberOfHiddenLayers.setText(String.valueOf(difficile.numberOfhiddenLayers));
+        if(D!=null) {
+            DL.setText(String.valueOf(D.hiddenLayerSize));
+            DLr.setText(String.valueOf(D.learningRate));
+            DH.setText(String.valueOf(D.numberOfhiddenLayers));
         }
 
     }
 
     public void modifier() throws FileNotFoundException {
-        String newFhiddenLayersSize = fHiddenLayersSize.getText();
-        String newFlearningRate = fLearningRate.getText();
-        String newFnumberOfHiddenLayers = fNumberOfHiddenLayers.getText();
+        String newFL = FL.getText();
+        String newFLr = FLr.getText();
+        String newFH = FH.getText();
 
-        String newMhiddenLayersSize = mHiddenLayersSize.getText();
-        String newMlearningRate = mLearningRate.getText();
-        String newMnumberOfHiddenLayers = mNumberOfHiddenLayers.getText();
+        String newML = ML.getText();
+        String newMLr = MLr.getText();
+        String newMH = MH.getText();
 
-        String newDhiddenLayersSize = dHiddenLayersSize.getText();
-        String newDlearningRate = dLearningRate.getText();
-        String newDnumberOfHiddenLayers = dNumberOfHiddenLayers.getText();
+        String newDL = DL.getText();
+        String newDLr = DLr.getText();
+        String newDH = DH.getText();
 
-        if(fHiddenLayersSize.getText()!=null && fLearningRate.getText()!=null && fNumberOfHiddenLayers.getText()!=null) {
-            newFhiddenLayersSize = fHiddenLayersSize.getText();
-            newFlearningRate = fLearningRate.getText();
-            newFnumberOfHiddenLayers = fNumberOfHiddenLayers.getText();
+        if(FL.getText()!=null && FLr.getText()!=null && FH.getText()!=null) {
+            newFL = FL.getText();
+            newFLr = FLr.getText();
+            newFH = FH.getText();
         }
 
-        if(mHiddenLayersSize.getText()!=null && mLearningRate.getText()!=null && mNumberOfHiddenLayers.getText()!=null) {
-            newMhiddenLayersSize = mHiddenLayersSize.getText();
-            newMlearningRate = mLearningRate.getText();
-            newMnumberOfHiddenLayers = mNumberOfHiddenLayers.getText();
+        if(ML.getText()!=null && MLr.getText()!=null && MH.getText()!=null) {
+            newML = ML.getText();
+            newMLr = MLr.getText();
+            newMH = MH.getText();
         }
 
-        if(dHiddenLayersSize.getText()!=null && dLearningRate.getText()!=null && dNumberOfHiddenLayers.getText()!=null) {
-            newDhiddenLayersSize = dHiddenLayersSize.getText();
-            newDlearningRate = dLearningRate.getText();
-            newDnumberOfHiddenLayers = dNumberOfHiddenLayers.getText();
+        if(DL.getText()!=null && DLr.getText()!=null && DH.getText()!=null) {
+            newDL = DL.getText();
+            newDLr = DLr.getText();
+            newDH = DH.getText();
         }
 
         /*
          * Suppression du fichier config
          */
-        File fileConfig = new File("src/main/resources/config.txt");
-        fileConfig.delete();
+        File ficConf = new File("src/main/resources/config.txt");
+        ficConf.delete();
 
         /*
          * Création du nouveau fichier config pour modifier les valeurs
          */
-        File NewfileConfig = new File("src/main/resources/config.txt");
-        PrintWriter writer = new PrintWriter("src/main/resources/config.txt");
-        writer.println("F:"+newFhiddenLayersSize+":"+newFlearningRate+":"+newFnumberOfHiddenLayers);
-        writer.println("M:"+newMhiddenLayersSize+":"+newMlearningRate+":"+newMnumberOfHiddenLayers);
-        writer.println("D:"+newDhiddenLayersSize+":"+newDlearningRate+":"+newDnumberOfHiddenLayers);
+        PrintWriter w = new PrintWriter("src/main/resources/config.txt");
+        w.println("F:"+newFL+":"+newFLr+":"+newFH);
+        w.println("M:"+newML+":"+newMLr+":"+newMH);
+        w.println("D:"+newDL+":"+newDLr+":"+newDH);
 
-        writer.close();
+        w.close();
     }
 
     @Override
