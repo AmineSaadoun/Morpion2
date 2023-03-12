@@ -3,19 +3,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="540.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.morpion2.settings">
+<AnchorPane prefHeight="540.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.morpion2.settings">
     <children>
-        <Pane layoutX="3.0" layoutY="14.0" prefHeight="394.0" prefWidth="594.0">
+        <Pane layoutX="-1.0" layoutY="7.0" prefHeight="542.0" prefWidth="783.0">
             <children>
-                <Button fx:id="buttonValider" layoutX="251.0" layoutY="326.0" mnemonicParsing="false" onAction="#validerConfig" prefHeight="33.0" prefWidth="115.0" text="Valider" />
-                <TextField fx:id="facileH" layoutX="45.0" layoutY="63.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField fx:id="facileR" layoutX="223.0" layoutY="63.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField fx:id="facilenbLayers" layoutX="405.0" layoutY="63.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField fx:id="difficileH" layoutX="39.0" layoutY="185.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField fx:id="difficleR" layoutX="223.0" layoutY="186.0" prefHeight="25.0" prefWidth="138.0" />
-                <TextField fx:id="difficilenbLayers" layoutX="405.0" layoutY="186.0" prefHeight="25.0" prefWidth="138.0" />
-                <Label layoutX="42.0" layoutY="22.0" prefHeight="25.0" prefWidth="107.0" text="Facile" />
-                <Label layoutX="40.0" layoutY="141.0" prefHeight="25.0" prefWidth="55.0" text="Difficile" />
+            <Pane layoutX="195.0" layoutY="121.0" prefHeight="314.0" prefWidth="394.0">
+               <children>
+                   <TextField fx:id="fHiddenLayersSize" layoutX="66.0" layoutY="67.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="fNumberOfHiddenLayers" layoutX="297.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="fLearningRate" layoutX="182.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="mHiddenLayersSize" layoutX="66.0" layoutY="122.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="mNumberOfHiddenLayers" layoutX="297.0" layoutY="67.0" prefHeight="24.0" prefWidth="75.0" />
+                   <TextField fx:id="mLearningRate" layoutX="182.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="dHiddenLayersSize" layoutX="66.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="dNumberOfHiddenLayers" layoutX="297.0" layoutY="177.0" prefHeight="25.0" prefWidth="75.0" />
+                   <TextField fx:id="dLearningRate" layoutX="186.0" layoutY="67.0" prefHeight="25.0" prefWidth="75.0" />
+                   <Label layoutX="23.0" layoutY="67.0" prefHeight="25.0" prefWidth="31.0" text="F" />
+                      <Label layoutX="23.0" layoutY="126.0" prefHeight="14.0" prefWidth="31.0" text="M" />
+                      <Label layoutX="23.0" layoutY="181.0" prefHeight="14.0" prefWidth="31.0" text="D" />
+                  <Label layoutX="90.0" layoutY="36.0" text="L" />
+                      <Button fx:id="buttonValider" layoutX="140.0" layoutY="259.0" mnemonicParsing="false" onAction="#modifier" prefHeight="33.0" prefWidth="115.0" text="Valider" />
+                  <Label layoutX="215.0" layoutY="36.0" text="H" />
+                  <Label layoutX="328.0" layoutY="36.0" text="LR" />
+               </children>
+            </Pane>
             </children>
         </Pane>
     </children>

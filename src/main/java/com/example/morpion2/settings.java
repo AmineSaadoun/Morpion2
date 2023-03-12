@@ -1,141 +1,121 @@
 package com.example.morpion2;
 
-import com.example.morpion2.MultiLayerPerceptron;
-import com.example.morpion2.SigmoidalTransferFunction;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-
 import java.io.*;
+
+import com.example.morpion2.*;
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class settings extends Application {
 
-    public static String fileModelFacile;
-    public static String fileModelDifficile;
+    @FXML private TextField fHiddenLayersSize;
+    @FXML private TextField fLearningRate;
+    @FXML private TextField fNumberOfHiddenLayers;
+
+    @FXML private TextField mHiddenLayersSize;
+    @FXML private TextField mLearningRate;
+    @FXML private TextField mNumberOfHiddenLayers;
+
+    @FXML private TextField dHiddenLayersSize;
+    @FXML private TextField dLearningRate;
+    @FXML private TextField dNumberOfHiddenLayers;
 
     @FXML
-    public Button buttonValider;
+    public void initialize() throws InterruptedException, IOException{
+        ConfigFileLoader configFileLoader = new ConfigFileLoader();
+        /* à l'appel de cette fonction
+         * le fichier config va être lu
+         * chaque ligne va être un objet Config
+         * La HashMap des config va être créé
+         */
+        configFileLoader.loadConfigFile("src/main/resources/config.txt");
+        /*
+         * Affectation des paramètre du niveau facile à la config facile
+         * même chose pour le niveau difficile et moyen
+         */
+        Config facile;
+        facile = configFileLoader.get("F");
+        Config moyen;
+        moyen = configFileLoader.get("M");
+        Config difficile;
+        difficile = configFileLoader.get("D");
 
-    @FXML
-    public TextField facileH, facileR, facilenbLayers;
+        /*
+         * Affectation des valeur des niveaux aux differents textField
+         */
+        //System.out.print(String.valueOf(facile.hiddenLayerSize));
 
-    @FXML
-    public TextField moyenH, moyenR, moyennbLayers;
+        if(facile!=null) {
+            fHiddenLayersSize.setText(String.valueOf(facile.hiddenLayerSize));
+            fLearningRate.setText(String.valueOf(facile.learningRate));
+            fNumberOfHiddenLayers.setText(String.valueOf(facile.numberOfhiddenLayers));
+        }
+        if(moyen!=null) {
+            mHiddenLayersSize.setText(String.valueOf(moyen.hiddenLayerSize));
+            mLearningRate.setText(String.valueOf(moyen.learningRate));
+            mNumberOfHiddenLayers.setText(String.valueOf(moyen.numberOfhiddenLayers));
+        }
+        if(difficile!=null) {
+            dHiddenLayersSize.setText(String.valueOf(difficile.hiddenLayerSize));
+            dLearningRate.setText(String.valueOf(difficile.learningRate));
+            dNumberOfHiddenLayers.setText(String.valueOf(difficile.numberOfhiddenLayers));
+        }
 
-    @FXML
-    public TextField difficileH, difficleR, difficilenbLayers;
-    @FXML
-    public static TextField idColumn;
-
-    @FXML
-    public static TextField idRow;
-
-    @FXML
-    public Button idSaveButton;
-
-    public MultiLayerPerceptron net;
-
-    @FXML
-    public Button manageModelsButton;
-
-    public static int numColumn = 3;
-
-    public static int numRow = 3;
-
-    @FXML private Label labelSubmit;
-
-    @FXML
-    public void initialize() throws IOException {
-        idSaveButton = new Button();
-        labelSubmit = new Label();
-
-        FileReader fin = new FileReader("src/main/resources/resources/config.txt");
-
-        BufferedReader bin = new BufferedReader(fin);
-
-        String facile = bin.readLine();
-        String diffcile = bin.readLine();
-
-        String [] facileSplit = facile.split(":");
-        String [] difficileSplit = diffcile.split(":");
-
-        int hf = Integer.parseInt(facileSplit[0]);
-        double lrf =  new Double(facileSplit[1]);
-        int lf = Integer.parseInt(facileSplit[2]);
-
-        int hd = Integer.parseInt(difficileSplit[0]);
-        double lrd = new Double(difficileSplit[1]);
-        int ld =Integer.parseInt(difficileSplit[2]);
-
-        setDifficileH(hd);
-        setDifficilenbLayers(lrd);
-        setDifficleR(ld);
-
-        setFacileH(hf);
-        setFacilenbLayers(lrf);
-        setFacileR(lf);
-
-        bin.close();
-
-        idSaveButton.requestFocus();
     }
 
+    public void modifier() throws FileNotFoundException {
+        String newFhiddenLayersSize = fHiddenLayersSize.getText();
+        String newFlearningRate = fLearningRate.getText();
+        String newFnumberOfHiddenLayers = fNumberOfHiddenLayers.getText();
 
-    public void setFacileH(int facileH) {
-        this.facileH.setText(String.valueOf(facileH));
+        String newMhiddenLayersSize = mHiddenLayersSize.getText();
+        String newMlearningRate = mLearningRate.getText();
+        String newMnumberOfHiddenLayers = mNumberOfHiddenLayers.getText();
+
+        String newDhiddenLayersSize = dHiddenLayersSize.getText();
+        String newDlearningRate = dLearningRate.getText();
+        String newDnumberOfHiddenLayers = dNumberOfHiddenLayers.getText();
+
+        if(fHiddenLayersSize.getText()!=null && fLearningRate.getText()!=null && fNumberOfHiddenLayers.getText()!=null) {
+            newFhiddenLayersSize = fHiddenLayersSize.getText();
+            newFlearningRate = fLearningRate.getText();
+            newFnumberOfHiddenLayers = fNumberOfHiddenLayers.getText();
+        }
+
+        if(mHiddenLayersSize.getText()!=null && mLearningRate.getText()!=null && mNumberOfHiddenLayers.getText()!=null) {
+            newMhiddenLayersSize = mHiddenLayersSize.getText();
+            newMlearningRate = mLearningRate.getText();
+            newMnumberOfHiddenLayers = mNumberOfHiddenLayers.getText();
+        }
+
+        if(dHiddenLayersSize.getText()!=null && dLearningRate.getText()!=null && dNumberOfHiddenLayers.getText()!=null) {
+            newDhiddenLayersSize = dHiddenLayersSize.getText();
+            newDlearningRate = dLearningRate.getText();
+            newDnumberOfHiddenLayers = dNumberOfHiddenLayers.getText();
+        }
+
+        /*
+         * Suppression du fichier config
+         */
+        File fileConfig = new File("src/main/resources/config.txt");
+        fileConfig.delete();
+
+        /*
+         * Création du nouveau fichier config pour modifier les valeurs
+         */
+        File NewfileConfig = new File("src/main/resources/config.txt");
+        PrintWriter writer = new PrintWriter("src/main/resources/config.txt");
+        writer.println("F:"+newFhiddenLayersSize+":"+newFlearningRate+":"+newFnumberOfHiddenLayers);
+        writer.println("M:"+newMhiddenLayersSize+":"+newMlearningRate+":"+newMnumberOfHiddenLayers);
+        writer.println("D:"+newDhiddenLayersSize+":"+newDlearningRate+":"+newDnumberOfHiddenLayers);
+
+        writer.close();
     }
-
-    public void setFacileR(int facileR) {
-        this.facileR.setText(String.valueOf(facileR));
-    }
-
-    public void setFacilenbLayers(double facilenbLayers) {
-        this.facilenbLayers.setText(String.valueOf(facilenbLayers));
-    }
-
-    public void setDifficileH(int difficileH) {
-        this.difficileH.setText(String.valueOf(difficileH)) ;
-    }
-
-    public void setDifficleR(int difficleR) {
-        this.difficleR.setText(String.valueOf(difficleR));
-    }
-
-    public void setDifficilenbLayers(double difficilenbLayers) {
-        this.difficilenbLayers.setText(String.valueOf(difficilenbLayers));
-    }
-
-
-    public void validerConfig(ActionEvent actionEvent) throws IOException {
-
-        FileWriter fin = new FileWriter("src/main/resources/config.txt");
-
-        BufferedWriter b = new BufferedWriter(fin);
-
-        b.write(Integer.parseInt(facileH.getText())+":"+new Double(facilenbLayers.getText())+":"+Integer.parseInt(facileR.getText()));
-        b.newLine();
-        b.write(Integer.parseInt(difficileH.getText())+":"+new Double(difficilenbLayers.getText())+":"+Integer.parseInt(difficleR.getText()));
-        b.close();
-        labelSubmit.setText("Values has been changed ");
-    }
-
-    public void ActionSaveDimensions(ActionEvent actionEvent) {
-        numColumn = Integer.parseInt(idColumn.getText());
-        System.out.println(numColumn);
-        numRow = Integer.parseInt(idRow.getText());
-        System.out.println(numRow);
-    }
-
-
 
     @Override
     public void start(Stage stage) throws Exception {
+
     }
 }
