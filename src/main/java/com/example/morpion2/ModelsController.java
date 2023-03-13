@@ -32,9 +32,10 @@ import java.util.stream.Collectors;
 public class ModelsController extends Application {
 
     @FXML
-    public Button idBackButton;
-    @FXML
     private TableView<Model> modelsTable;
+
+    @FXML
+    private Button deleteBtn;
     @FXML
     private TableColumn<Model, String> models;
     @FXML
@@ -54,8 +55,8 @@ public class ModelsController extends Application {
 
 
         models = new TableColumn<Model, String>("Models");
-        select = new TableColumn("Action");
-        select.setMinWidth(200);
+        select = new TableColumn("");
+
         select.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Model, CheckBox>, ObservableValue<CheckBox>>() {
 
             @Override
@@ -97,15 +98,18 @@ public class ModelsController extends Application {
                 try {
                     boolean result = Files.deleteIfExists(Paths.get(model.getPath()));
                     if (result) {
-                        System.out.println("File is deleted!");
+                        System.out.println("Le(s) model(s) est/(sont) supprimé(s)!");
 
                     } else {
-                        System.out.println("Sorry, unable to delete the file.");
+                        System.out.println("Désolé, impossible de supprimer le(s) model(s)!");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+
+            Stage stage = (Stage) deleteBtn.getScene().getWindow();
+            stage.close();
 
         });
 
@@ -136,19 +140,7 @@ public class ModelsController extends Application {
         return null;
     }
 
-    public void backButtonActionPerformed(ActionEvent actionEvent) throws IOException {
 
-        Parent gameRoot = FXMLLoader.load(getClass().getResource("src/main/resources/com/example/morpion2/settings.fxml"));
-        Scene gameScene = new Scene(gameRoot);
-
-
-        Stage window = (Stage) idBackButton.getScene().getWindow();
-
-
-        window.setScene(gameScene);
-        window.show();
-        window.setTitle("Settings");
-    }
 
     @Override
     public void start(Stage stage) throws Exception {

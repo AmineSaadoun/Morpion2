@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.morpion2.ModelsController">
-    <children>
-        <Pane prefHeight="400.0" prefWidth="600.0">
+<Pane prefHeight="457.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.morpion2.ModelsController">
             <children>
-                <Button fx:id="deleteBtn" layoutX="472.0" layoutY="339.0" mnemonicParsing="false" onAction="#deleteAction" style="-fx-background-color:#43deb7;                         -fx-background-radius: 6, 5;                         -fx-background-insets: 0, 1;                         -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                         -fx-text-fill: #F2F2F2;" text="Supprimer">
-                    <font>
-                        <Font name="Segoe UI Semibold" size="16.0" />
-                    </font>
+                <Button fx:id="deleteBtn" layoutX="450.0" layoutY="339.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color:red;                         -fx-background-radius: 6, 5;                         -fx-background-insets: 0, 1;                         -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                         -fx-text-fill: #F2F2F2;" text="Supprimer" textFill="WHITE">
                 </Button>
-                <TableView fx:id="modelsTable" layoutX="29.0" layoutY="66.0" prefHeight="236.0" prefWidth="542.0">
+                <TableView fx:id="modelsTable" layoutX="73.0" layoutY="65.0" prefHeight="236.0" prefWidth="470.0">
                     <columns>
 
                     </columns>
                 </TableView>
-                <Button fx:id="idBackButton" layoutX="29.0" layoutY="335.0" mnemonicParsing="false" onAction="#backButtonActionPerformed" prefHeight="44.0" prefWidth="79.0" style="-fx-background-color:#43deb7;                                                      -fx-background-radius: 6, 5;                                                       -fx-background-insets: 0, 1;                                                       -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                                                       -fx-text-fill: #F2F2F2;" text="Back">
-                    <font>
-                        <Font name="Segoe UI Semibold" size="16.0" />
-                    </font>
-                </Button>
             </children>
         </Pane>
-    </children>
-</AnchorPane>
