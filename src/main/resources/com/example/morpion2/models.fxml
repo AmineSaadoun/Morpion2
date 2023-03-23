@@ -2,11 +2,27 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 
 <Pane prefHeight="457.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.morpion2.ModelsController">
             <children>
-                <Button fx:id="deleteBtn" layoutX="450.0" layoutY="339.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color:red;                         -fx-background-radius: 6, 5;                         -fx-background-insets: 0, 1;                         -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                         -fx-text-fill: #F2F2F2;" text="Supprimer" textFill="WHITE">
-                </Button>
+                <Button fx:id="deleteBtn" layoutX="450.0" layoutY="339.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="25.0" prefWidth="93.0" style="-fx-background-color:red;                         -fx-background-radius: 6, 5;                         -fx-background-insets: 0, 1;                         -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );                         -fx-text-fill: #F2F2F2;" text="Supprimer">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill></Button>
                 <TableView fx:id="modelsTable" layoutX="73.0" layoutY="65.0" prefHeight="236.0" prefWidth="470.0">
                     <columns>
 

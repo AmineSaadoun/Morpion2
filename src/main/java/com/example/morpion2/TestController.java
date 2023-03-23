@@ -1,14 +1,13 @@
 package com.example.morpion2;
 
-
-import javafx.application.Application;
-import javafx.application.Platform;
+import com.example.morpion2.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
@@ -16,128 +15,123 @@ import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Scanner;
 
-import static com.example.morpion2.Test.learn;
+import static javafx.application.Application.launch;
 
-
-public class TestController extends Application {
-    private Thread progressBarThread;
-
-    @FXML
-    private ProgressIndicator pi;
-
-
-    private Task<Void> task;
-    @FXML
-    private Button start;
+public class TestController {
 
     @FXML
     private TextField tf;
-
+    @FXML
+    private Button startButton;
     @FXML
     private ProgressBar progbar;
 
-    public void initialize() throws IOException {
-        int size = 9;
-        int h = 10;
-        double lr = 0.1;
-        int l = 1;
-    }
+    private Thread progressBarThread;
+    private Task<Void> task;
+
+    private String fileModel;
+    private MultiLayerPerceptron net;
+
+    private Config config;
+
+
     @FXML
+    public void initialize() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("modeJeu.fxml"));
+        Parent root = loader.load();
+        modeJeuController controller = loader.getController();
+        fileModel = modeJeuController.fileModel;
+        System.out.println(fileModel);
+
+        net = controller.getNet();
+
+    }
+
+
+    public void startTest() {
+        startButton.setDisable(true);
+        task =  task1();
+
+
+        progbar.setProgress(0);
+
+        progbar.progressProperty().bind(task.progressProperty());
+        progressBarThread =  new Thread(task);
+        progressBarThread.start();
+
+
+        progbar.progressProperty().bind(task.progressProperty());
+        task.progressProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
+                progbar.progressProperty().bind(task.progressProperty());
+            }
+        });
+        task.messageProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                System.out.println(task.getMessage());
+                tf.setText(task.getMessage());
+            }
+        });
+    }
+
+
     private Task<Void> task1() {
-        int size = 9;
-        int h = 10;
-        double lr = 0.1;
-        int l = 1;
         return new Task<Void>() {
 
             @Override
             protected Void call() throws Exception {
 
-                // TODO Auto-generated method stub
+
+
+                double startTime = System.nanoTime();
+
+                int currentTrainingCount = 0;
+                int epochs = 1_000_000;
+                int currentTrainingTotal = 1_000_000;
+
+
+                int total = 0;
                 try {
-                    System.out.println();
-                    System.out.println("START TRAINING ...");
-                    System.out.println();
-                    //
-                    //       int[] layers = new int[]{ size, 128, 128, size };
-                    int[] layers = new int[l+2];
-                    layers[0] = size ;
-                    for (int i = 0; i < l; i++) {
-                        layers[i+1] = h ;
-                    }
-                    layers[layers.length-1] = size ;
-                    //
+                    int[] layers = new int[]{ 9, 9, 9};
+
                     double error = 0.0 ;
-                    MultiLayerPerceptron net = new MultiLayerPerceptron(layers, lr, new SigmoidalTransferFunction());
-                    double epochs = 10000000 ;
-
-                    System.out.println("---");
-                    System.out.println("Load data ...");
-                    HashMap<Integer, Coup> mapTrain = Test.loadCoupsFromFile("src/main/resources/resources/train_dev_test/train.txt");
-                    HashMap<Integer, Coup> mapDev = Test.loadCoupsFromFile("src/main/resources/resources/train_dev_test/dev.txt");
-                    HashMap<Integer, Coup> mapTest = Test.loadCoupsFromFile("src/main/resources/resources/train_dev_test/test.txt");
-                    System.out.println("---");
-                    //TRAINING ...
-                    for(int i = 0; i < epochs; i++){
-
-                        Coup c = null ;
-                        while ( c == null )
-                            c = mapTrain.get((int)(Math.round(Math.random() * mapTrain.size())));
-
-                        error += net.backPropagate(c.in, c.out);
-
-                        if ( i % 10000 == 0 ) {
-                            updateMessage("Error at step " + i + " is " + (error / (double) i));
-
-                        }
-                        updateProgress(i,epochs);
 
 
-                    }
+                    error /= epochs ;
+                    System.out.println("Error is " + error);
 
                     System.out.println("Learning completed!");
+                    updateMessage("Learning completed!");
+
+                    // Sauvegarde du model
+                    net.save("src/main/resources/resources/models/"+fileModel);
+
                 }
                 catch (Exception e) {
-                    System.out.println("Test.test()");
+                    System.out.println("AI.train()");
                     e.printStackTrace();
                     System.exit(-1);
                 }
+
+                double endTime = System.nanoTime();
+                System.out.println("Done in: " + (endTime - startTime) / 1_000_000_000);
+
                 return null;
             }
-
         };
-
-    }
-    public void startTest() {
-        task =  task1();
-
-
-        progbar.setProgress(0);
-        pi.setProgress(0);
-
-        progbar.progressProperty().bind(task.progressProperty());
-        pi.progressProperty().bind(task.progressProperty());
-
-
-        task.messageProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-                tf.setText(t1);
-            }
-        });
-
-        new Thread(task).start();
     }
 
 
-
-
-    @Override
-    public void start(Stage stage) throws Exception {
-
+    public static void main(String[] args) {
+        launch(args);
     }
+
+
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="540.0" prefWidth="747.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.morpion2.modeJeuController">
+    <children>
+        <Pane fx:id="idAnchorPane" prefHeight="525.0" prefWidth="737.0">
+            <children>
+                <Label fx:id="choiceLabel" layoutX="279.0" layoutY="212.0" prefHeight="23.0" prefWidth="179.0" text="Select your choice">
+                    <font>
+                        <Font name="Segoe UI Semibold" size="21.0" />
+                    </font>
+                </Label>
+                <Button fx:id="EasyBtn" layoutX="160.0" layoutY="305.0" mnemonicParsing="false" onAction="#EasyBtnActionPerformed" prefHeight="25.0" prefWidth="103.0" text="Facile">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="mediumBtn" layoutX="304.0" layoutY="305.0" mnemonicParsing="false" onAction="#MediumBtnActionPerformed" prefHeight="25.0" prefWidth="103.0" text="Moyen">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="16.0" />
+                    </font>
+                </Button>
+                <Button fx:id="hardBtn" layoutX="463.0" layoutY="305.0" mnemonicParsing="false" onAction="#HardBtnActionPerformed" prefHeight="25.0" prefWidth="103.0" text="Difficile">
+                    <font>
+                        <Font name="Segoe UI Semibold Italic" size="16.0" />
+                    </font>
+                </Button>
+
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

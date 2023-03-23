@@ -9,8 +9,11 @@ public class Config {
 		this.numberOfhiddenLayers = numberOfhiddenLayers;
 		this.learningRate = learningRate;
 	}
-	
-	@Override
+
+    public Config(int l, double lr, int h) {
+    }
+
+    @Override
 	public String toString() {
 		return "Config [level=" + level + ", hiddenLayerSize=" + hiddenLayerSize + ", numberOfhiddenLayers="
 				+ numberOfhiddenLayers + ", learningRate=" + learningRate + "]";
