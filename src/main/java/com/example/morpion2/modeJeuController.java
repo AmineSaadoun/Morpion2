@@ -87,7 +87,7 @@ public class modeJeuController {
 
 
         if(new File("src/main/resources/resources/models/"+fileModel).exists()){
-            System.out.println("******* Model Loaded ********");
+            System.out.println("Le model existe déjà");
             MultiLayerPerceptron net = MultiLayerPerceptron.load("src/main/resources/resources/models/"+fileModel);
         }
 

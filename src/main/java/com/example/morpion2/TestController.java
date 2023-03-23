@@ -89,25 +89,13 @@ public class TestController {
             protected Void call() throws Exception {
 
 
-
-                double startTime = System.nanoTime();
-
-                int currentTrainingCount = 0;
-                int epochs = 1_000_000;
-                int currentTrainingTotal = 1_000_000;
-
-
-                int total = 0;
+                int epochs = 1000000;
+                
                 try {
                     int[] layers = new int[]{ 9, 9, 9};
 
                     double error = 0.0 ;
 
-
-                    error /= epochs ;
-                    System.out.println("Error is " + error);
-
-                    System.out.println("Learning completed!");
                     updateMessage("Learning completed!");
 
                     // Sauvegarde du model
@@ -119,9 +107,6 @@ public class TestController {
                     e.printStackTrace();
                     System.exit(-1);
                 }
-
-                double endTime = System.nanoTime();
-                System.out.println("Done in: " + (endTime - startTime) / 1_000_000_000);
 
                 return null;
             }
